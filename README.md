@@ -8,10 +8,12 @@ python3 -m pip install git+https://github.com/LocalToasty/TelegramLogger@master
 ## Setup
 
 1. [Create a new bot](https://core.telegram.org/bots) and save its token in
-   `~/.telegramtoken`.
+   `$HOME/.telegramtoken`.  This token allows you to access all of the bot's
+   functions, so don't forget to set the file to be only readable by yourself.
+   (`chmod 600 $HOME/.telegramtoken` on unix-like systems)
 2. Add your bot on Telegram and write a message to it.
 3. Run `telegram-logger -u`.  A list of all recent messages the bot has
-   received should appear.  Write down the chat id of the message you just
+   received should appear.  Write down the chat ID of the message you just
    sent.
 
 
