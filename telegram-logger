@@ -1,17 +1,16 @@
 #!/usr/bin/env python3
 
 import telegram
+from telegramlogger import default_token_path
 from pathlib import Path
 import argparse
 
 if __name__ == '__main__':
-    tokenpath = Path.home()/'.telegramtoken'  # TODO
-
     parser = argparse.ArgumentParser(description='Send Telegram messages.')
-    parser.add_argument('--tokenfile', '-t', nargs=1, default=tokenpath,
-                        help=f'file containing the telegram token (default: {tokenpath})')
+    parser.add_argument('--tokenfile', '-t', nargs=1, default=default_token_path,
+                        help=f'file containing the telegram token (default: {default_token_path})')
     parser.add_argument('--get-updates', '-u', action='store_true',
-                        help='get messages recently sent to bot')
+                        help='get messages recently sent to the bot')
 
     args = parser.parse_args()
 

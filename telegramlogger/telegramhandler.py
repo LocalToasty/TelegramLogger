@@ -3,16 +3,18 @@ import telegram
 from pathlib import Path
 from typing import Union
 
+default_token_path = Path.home()/'.telegramtoken'
+
 class TelegramHandler(logging.StreamHandler):
     def __init__(self,
                  *args,
                  chat_id: int,
-                 tokenpath: Union[Path, str] = Path.home()/'.telegramtoken',
+                 token_path: Union[Path, str] = default_token_path,
                  **kwargs) -> None:
 
         super().__init__(*args, **kwargs)
         
-        with open(tokenpath, 'r') as f:
+        with open(token_path, 'r') as f:
             token = f.read().strip()
             self.bot = telegram.Bot(token=token)
             

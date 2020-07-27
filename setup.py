@@ -5,7 +5,7 @@ with open('README.md', 'r') as fh:
 
 setuptools.setup(
     name='telegram-logger',
-    version='0.0.1',
+    version='0.0.2',
     author='Marko van Treeck',
     author_email='markovantreeck@gmail.com',
     description='Send logs to telegram',
