@@ -1,0 +1,29 @@
+#!/usr/bin/env python3
+
+import telegram
+from pathlib import Path
+import argparse
+
+if __name__ == '__main__':
+    tokenpath = Path.home()/'.telegramtoken'  # TODO
+
+    parser = argparse.ArgumentParser(description='Send Telegram messages.')
+    parser.add_argument('--tokenfile', '-t', nargs=1, default=tokenpath,
+                        help=f'file containing the telegram token (default: {tokenpath})')
+    parser.add_argument('--get-updates', '-u', action='store_true',
+                        help='get messages recently sent to bot')
+
+    args = parser.parse_args()
+
+    bot = None
+    with open(args.tokenfile, 'r') as f:
+        token = f.read().strip()
+        bot = telegram.Bot(token=token)
+
+    if args.get_updates:
+        updates = bot.get_updates()
+        for update in updates:
+            msg = update.message
+            print(f'{msg.chat.last_name}, {msg.chat.first_name} ({msg.chat_id}): "{msg.text}"')
+    else:
+        parser.print_help()
